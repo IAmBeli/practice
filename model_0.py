@@ -60,3 +60,16 @@ class LinearRegressionModel(nn.Module): # <- almost everythin in PyTorch inherit
   # Forward method to define the computation in the model(should be necessarily overwritten)
   def forward(self, x: torch.Tensor) -> torch.Tensor: # <- "x" is the input data
     return self.weights * x + self.bias # this is the linear regression formula
+
+# Create a random seed
+torch.manual_seed(42)
+
+# Create an instance of the model (this is a subclass of nn.Module)
+model_0 = LinearRegressionModel()
+
+# Make predictions with model
+with torch.inference_mode():
+   y_preds = model_0(X_test)
+
+plot_predictions(predictions=y_preds)
+plt.show()
