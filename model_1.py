@@ -1,6 +1,7 @@
 import torch
 from torch import nn
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 # Check PyTorch version
 print(torch.__version__)
@@ -100,3 +101,16 @@ for epoch in range(epochs):
 
 print(weight, bias)
 print(model_1.state_dict())
+
+MODEL_PATH = Path("models")
+MODEL_PATH.mkdir(parents=True, exist_ok=True)
+
+MODEL_NAME = "1model.pth"
+MODEL_SAVE_PATH = MODEL_PATH / MODEL_NAME
+
+torch.save(obj=model_1.state_dict(),
+           f=MODEL_SAVE_PATH)
+
+loaded_model = LinearRegressionModelV2()
+
+loaded_model.load_state_dict(torch.load(f=MODEL_SAVE_PATH))
