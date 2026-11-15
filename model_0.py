@@ -122,3 +122,9 @@ MODEL_SAVE_PATH = MODEL_PATH / MODEL_NAME
 print(f"Saving model to: {MODEL_SAVE_PATH}")
 torch.save(obj=model_0.state_dict(),
            f=MODEL_SAVE_PATH)
+
+# To load in a saved state_dict we have to initiate a new instance of our model class
+loaded_model_0 = LinearRegressionModel()
+
+# Load the saved state_dict of model_0(this will update the new instance with updated parameters)
+loaded_model_0.load_state_dict(torch.load(f=MODEL_SAVE_PATH))
